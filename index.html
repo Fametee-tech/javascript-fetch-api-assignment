@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A beginner-friendly JavaScript project that fetches and displays user data from a public API.">
+  <title>Fetch Lab | JavaScript API Assignment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div class="page-shell">
+    <header class="site-header">
+      <a class="brand" href="#top" aria-label="Fetch Lab home">
+        <span class="brand-mark" aria-hidden="true">{ }</span>
+        <span>fetch<span class="brand-light">lab</span><small>JAVASCRIPT PRACTICE</small></span>
+      </a>
+      <div class="header-tag"><span class="header-dot"></span> FRONTEND DEVELOPMENT</div>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="eyebrow-line"></span> JAVASCRIPT · ASYNC / AWAIT</p>
+          <h1 id="page-title">Fetch data.<br><span>Make it useful.</span></h1>
+          <p class="hero-description">A simple, interactive user directory built with JavaScript. Click the button to request real data from a public API and display it right here.</p>
+          <div class="hero-points">
+            <span><span class="tick">✓</span> Live API request</span>
+            <span><span class="tick">✓</span> Dynamic user cards</span>
+            <span><span class="tick">✓</span> Error handling</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-orbit orbit-one"></div>
+          <div class="art-orbit orbit-two"></div>
+          <div class="code-window">
+            <div class="code-window-top"><span></span><span></span><span></span><b>app.js</b></div>
+            <div class="code-lines">
+              <p><i>01</i><span class="code-purple">const</span> <span class="code-blue">response</span> = <span class="code-purple">await</span></p>
+              <p class="indent"><span class="code-yellow">fetch</span>(<span class="code-green">API_URL</span>);</p>
+              <p><i>02</i><span class="code-purple">const</span> <span class="code-blue">users</span> =</p>
+              <p class="indent"><span class="code-purple">await</span> response.<span class="code-yellow">json</span>();</p>
+              <p><i>03</i><span class="code-yellow">displayUsers</span>(users);</p>
+            </div>
+            <div class="code-success"><span class="success-pulse"></span> Ready to fetch data</div>
+          </div>
+          <div class="floating-chip chip-top"><span class="chip-icon">↗</span> API CONNECTED</div>
+          <div class="floating-chip chip-bottom"><span class="chip-icon">✳</span> 10 SAMPLE USERS</div>
+        </div>
+      </section>
+
+      <section class="directory-section" aria-labelledby="directory-title">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker">THE LIVE DEMO</p>
+            <h2 id="directory-title">User directory</h2>
+            <p class="section-description">The information below comes from JSONPlaceholder, a free practice API.</p>
+          </div>
+          <div class="api-indicator"><span class="indicator-dot"></span> PUBLIC API <span class="indicator-divider"></span> NO API KEY</div>
+        </div>
+
+        <div class="directory-panel">
+          <div class="panel-toolbar">
+            <div class="panel-title-group">
+              <div class="panel-icon" aria-hidden="true">◎</div>
+              <div>
+                <h3>All users <span class="user-count" id="user-count">—</span></h3>
+                <p id="panel-subtitle">Load the user list to get started</p>
+              </div>
+            </div>
+            <button class="load-button" id="load-button" type="button">
+              <span class="button-icon" aria-hidden="true">↻</span>
+              <span id="button-label">Load Data</span>
+            </button>
+          </div>
+
+          <div class="status-area" id="status-area" role="status" aria-live="polite">
+            <div class="empty-state" id="empty-state">
+              <div class="empty-icon" aria-hidden="true">
+                <svg viewBox="0 0 64 64" fill="none"><rect x="10" y="13" width="44" height="38" rx="8" stroke="currentColor" stroke-width="2.2"/><circle cx="25" cy="28" r="6" stroke="currentColor" stroke-width="2.2"/><path d="M16 45c1.8-5 5-7.5 9-7.5s7.2 2.5 9 7.5M40 25h8M40 32h8" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              </div>
+              <h4>Your user list is waiting</h4>
+              <p>Select <strong>Load Data</strong> to fetch users from the API. Their details will appear here as cards.</p>
+            </div>
+            <div class="loading-state" id="loading-state" hidden>
+              <span class="spinner" aria-hidden="true"></span>
+              <strong>Fetching users...</strong>
+              <p>Contacting the public API. This should only take a moment.</p>
+            </div>
+            <div class="error-state" id="error-state" hidden>
+              <div class="error-icon" aria-hidden="true">!</div>
+              <h4>We couldn't load the data</h4>
+              <p id="error-message">Please check your internet connection and try again.</p>
+              <button class="retry-button" id="retry-button" type="button">Try again</button>
+            </div>
+          </div>
+
+          <div class="user-grid" id="user-grid" aria-label="Fetched users"></div>
+          <div class="panel-footer">
+            <span><span class="footer-pulse"></span> Data provided by JSONPlaceholder</span>
+            <a href="https://jsonplaceholder.typicode.com/users" target="_blank" rel="noopener noreferrer">View API endpoint <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="concept-strip" aria-label="JavaScript concepts used">
+        <div><span class="concept-number">01</span><span><strong>fetch()</strong><small>Request data</small></span></div>
+        <div><span class="concept-number">02</span><span><strong>async / await</strong><small>Handle the request</small></span></div>
+        <div><span class="concept-number">03</span><span><strong>try / catch</strong><small>Handle errors</small></span></div>
+        <div><span class="concept-number">04</span><span><strong>DOM</strong><small>Display the results</small></span></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>BUILT FOR LEARNING · JAVASCRIPT FUNDAMENTALS</span>
+      <span>FETCH LAB <b>©</b> 2026</span>
+    </footer>
+  </div>
+</body>
+</html>
